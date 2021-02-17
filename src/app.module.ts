@@ -3,9 +3,8 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ClientsModule } from './clients/clients.module';
 import { BuildingsModule } from './buildings/buildings.module';
-import { SectorModule} from './sector/sector.module';
+import { SectorModule } from './sectors/sector.module';
 import typeOrmConfig from './config/typeorm.config';
-import { from } from 'rxjs';
 
 @Module({
   imports: [
