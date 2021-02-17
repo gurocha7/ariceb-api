@@ -18,16 +18,6 @@
 - Nome das tabelas em Snake Case. Ex: nota_fiscal
 - MySQL
 
-### Definições do Framework: 
-
--  Auth: Cognito (validar com o coleta);
--  ORM: Typeorm (validar com o coleta);
--  Logger: Sentry.io ou salvo em bd;
--  Caching: Definir posteriormente.
--  Jobs(Background):  bulljs com redis.
--  Testes: Jest, com testes de unidade e teste de integração.
--  Swagger: Documentação dos endpoints.
-
 ### Definições de Git:
 
 - Branchs: master, development, e homolog.

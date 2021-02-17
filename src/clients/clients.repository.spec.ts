@@ -1,6 +1,6 @@
-import { ClientRepository } from '../repositories/clients.repository';
-import { FindClientsQueryDto } from '../dtos/findClientsQuery.dto';
-import { SortEnum } from '../../shared/enums/sort.enum';
+import { SortEnum } from 'src/shared/enums/sort.enum';
+import { ClientRepository } from './clients.repository';
+import { FindClientsQueryDto } from './dtos/findClientsQuery.dto';
 
 describe('ClientsRepository', () => {
   const clientsRepository = new ClientRepository();

@@ -1,7 +1,7 @@
-import { SortEnum } from '../../shared/enums/sort.enum';
-import { FindClientsQueryDto } from '../dtos/findClientsQuery.dto';
-import { ClientsService } from '../services/clients.service';
+import { SortEnum } from './../shared/enums/sort.enum';
+import { FindClientsQueryDto } from './dtos/findClientsQuery.dto';
 import { ClientsController } from './clients.controller';
+import { ClientsService } from './clients.service';
 
 describe('ClientsController', () => {
   const clientsService = {} as jest.Mocked<ClientsService>;
