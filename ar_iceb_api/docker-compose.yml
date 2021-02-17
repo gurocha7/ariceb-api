@@ -1,0 +1,44 @@
+version: '3.1'
+
+services:
+  basic_db:
+    container_name: 'basic_db'
+    image: mysql
+    command: mysqld --default-authentication-plugin=mysql_native_password --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: docker
+      MYSQL_DATABASE: basic_db
+      MYSQL_USER: docker
+      MYSQL_PASSWORD: docker
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql-data:/var/lib/mysql
+    networks:
+      - basic-raro-network
+
+  basic_api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    ports:
+      - '3000:3000'
+    container_name: 'basic_api'
+    restart: always
+    volumes:
+      - ./:/basic-api
+    command: yarn start:dev
+    environment:
+      - NODE_ENV=development
+    depends_on:
+      - basic_db
+    networks:
+      - basic-raro-network
+
+volumes:
+  mysql-data:
+
+networks: 
+  basic-raro-network:
+    driver: bridge
