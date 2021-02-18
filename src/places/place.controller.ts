@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Post, Query } from '@nestjs/common';
-import { SectorService } from './sector.service';
+import { PlaceService } from './place.service'
 
-@Controller('v1/sectors')
-export class SectorController {
+@Controller('v1/places')
+export class PlaceController {
   // constructor(private sectorService: SectorService) {}
 }
