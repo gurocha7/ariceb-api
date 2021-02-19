@@ -4,8 +4,8 @@ import { EventsRepository } from './events.repository'
 
 @Injectable()
 export class EventsService {
-  // constructor(
-  //   @InjectRepository(SectorRepository)
-  //   private sectorRepository: SectorRepository,
-  // ) {}
+  constructor(
+    @InjectRepository(EventsRepository)
+    private eventsRepository: EventsRepository,
+  ) {}
 }

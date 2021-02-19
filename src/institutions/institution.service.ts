@@ -4,8 +4,8 @@ import { InstitutionRepository } from './institution.repository'
 
 @Injectable()
 export class InstitutionService {
-  // constructor(
-  //   @InjectRepository(SectorRepository)
-  //   private sectorRepository: SectorRepository,
-  // ) {}
+  constructor(
+    @InjectRepository(InstitutionRepository)
+    private institutionRepository: InstitutionRepository,
+  ) {}
 }

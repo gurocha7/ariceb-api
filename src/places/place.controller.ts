@@ -3,5 +3,5 @@ import { PlaceService } from './place.service'
 
 @Controller('v1/places')
 export class PlaceController {
-  // constructor(private sectorService: SectorService) {}
+  constructor(private placeService: PlaceService) {}
 }

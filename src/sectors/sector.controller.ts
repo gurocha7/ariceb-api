@@ -3,5 +3,5 @@ import { SectorService } from './sector.service';
 
 @Controller('v1/sectors')
 export class SectorController {
-  // constructor(private sectorService: SectorService) {}
+  constructor(private sectorService: SectorService) {}
 }
