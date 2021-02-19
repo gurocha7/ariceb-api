@@ -8,9 +8,9 @@ import {
     UpdateDateColumn,
   } from 'typeorm';
   
-  @Entity('eventss')
+  @Entity('institutions')
   @Unique(['name'])
-  export class Events extends BaseEntity {
+  export class Institution extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;
   
