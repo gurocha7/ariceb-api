@@ -16,7 +16,7 @@ export class BuildingsController {
   }
 
   @Get()
-  async listBuildings(@Body() listBuildingsDTO: ListBuildingsDTO ): Promise<[Building]>{
+  async listBuildings(@Body() listBuildingsDTO: ListBuildingsDTO ): Promise<Building[]>{
     return await this.buildingService.listBuildings(listBuildingsDTO);
   }
 }

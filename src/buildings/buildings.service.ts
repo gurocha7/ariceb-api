@@ -22,14 +22,9 @@ export class BuildingsService {
     }
   }
 
-  async listBuildings(listBuildingsDTO :ListBuildingsDTO): Promise<[Building]>{
+  async listBuildings(listBuildingsDTO :ListBuildingsDTO): Promise<Building[]>{
     try {
-      //  return this.buildingRepository.recover(listBuildingsDTO);
-      var iceb = new Building();
-      iceb.name = "ICEB"
-      iceb.number = 1
-
-      return [iceb]
+       return this.buildingRepository.find();
     } catch (error) {
       throw new InternalServerErrorException('Erro ao listas prédios.')
     }
