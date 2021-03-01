@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Building } from './buildings.entity';
 import { BuildingRepository } from './buildings.repository';
 import { CreateBuildingDTO } from './dtos/createBulding.dto';
+import { ListBuildingsDTO } from './dtos/listBuildings.dto'
 
 @Injectable()
 export class BuildingsService {
@@ -20,4 +21,18 @@ export class BuildingsService {
       throw new InternalServerErrorException('Erro ao cadastrar prédio.');
     }
   }
+
+  async listBuildings(listBuildingsDTO :ListBuildingsDTO): Promise<[Building]>{
+    try {
+      //  return this.buildingRepository.recover(listBuildingsDTO);
+      var iceb = new Building();
+      iceb.name = "ICEB"
+      iceb.number = 1
+
+      return [iceb]
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao listas prédios.')
+    }
+  }
+
 }
