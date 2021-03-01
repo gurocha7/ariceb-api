@@ -22,11 +22,20 @@ export class BuildingsService {
     }
   }
 
-  async listBuildings(listBuildingsDTO :ListBuildingsDTO): Promise<Building[]>{
+  async listBuildings(): Promise<Building[]>{
     try {
        return this.buildingRepository.find();
     } catch (error) {
       throw new InternalServerErrorException('Erro ao listas prédios.')
+    }
+  }
+
+  async deleteBuilding(id: string): Promise<string> {
+    try {
+      await this.buildingRepository.delete({ id: id });
+      return "Prédio deletado com sucesso!"
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao tentar deletar prédio.')
     }
   }
 
