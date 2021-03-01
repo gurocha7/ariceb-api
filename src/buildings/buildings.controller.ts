@@ -1,10 +1,11 @@
-import { Body, Controller, Delete, Post, Query,HttpStatus, Get } from '@nestjs/common';
+import { Body, Controller, Delete, Post, Query,HttpStatus,Put, Get, Param } from '@nestjs/common';
 import { Building } from './buildings.entity';
 import { BuildingsService } from './buildings.service';
 import { CreateBuildingDTO } from './dtos/createBulding.dto';
 import { ListBuildingsDTO } from './dtos/listBuildings.dto'
 import { DeleteBuildingDTO } from './dtos/deleteBuilding.dto';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { UpdateBuildingDTO } from './dtos/updateBuilding.dto';
 
 @Controller('v1/buildings')
 export class BuildingsController {
@@ -33,5 +34,11 @@ export class BuildingsController {
   @Delete()
   async deleteBuilding(@Body() deleteBuildingDTO: DeleteBuildingDTO): Promise<string>{
     return await this.buildingService.deleteBuilding(deleteBuildingDTO.id);
+  }
+
+  @Put()
+  async updateBuilding(@Body() updateBuildingDTO: UpdateBuildingDTO,
+                       @Param('id') id: string): Promise<Building>{
+    return await this.buildingService.updateBuilding(updateBuildingDTO,id);
   }
 }
