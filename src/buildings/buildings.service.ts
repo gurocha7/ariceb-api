@@ -42,8 +42,8 @@ export class BuildingsService {
 
   async updateBuilding(updateBuildingDTO: UpdateBuildingDTO, id: string): Promise<Building>{
     try {
-      await this.buildingRepository.update({ id }, updateBuildingDTO);
-      return this.getBuildingById(id);
+      await this.buildingRepository.update( { id } , updateBuildingDTO);
+      return await this.getBuildingById(id);
     } catch (error) {
       throw new InternalServerErrorException('Erro ao tentar atualizar prédio.')
     }
