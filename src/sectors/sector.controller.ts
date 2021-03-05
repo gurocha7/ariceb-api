@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, Post, Query, HttpStatus } from '@nestjs/common';
+import { Body, Controller, Delete, Post, Query, HttpStatus, Get } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SectorService } from './sector.service';
 import { CreateSectorDTO } from './dtos/createSector.dto';
@@ -17,9 +17,14 @@ export class SectorController {
     status: HttpStatus.OK,
     type: CreateSectorDTO,
   })
-  async createBuilding(
+  async createSector(
     @Body() createSectorDTO: CreateSectorDTO,
   ): Promise<Sector> {
     return await this.sectorService.createSector(createSectorDTO);
+  }
+
+  @Get()
+  async listSectors(): Promise<Sector[]>{
+    return await this.sectorService.listSectors()
   }
 }
