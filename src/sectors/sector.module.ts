@@ -8,6 +8,7 @@ import { BuildingsModule } from 'src/buildings/buildings.module';
 @Module({
   imports: [TypeOrmModule.forFeature([SectorRepository]), BuildingsModule],
   providers: [SectorService],
-  controllers: [SectorController]
+  controllers: [SectorController],
+  exports: [SectorService]
 })
 export class SectorModule {}

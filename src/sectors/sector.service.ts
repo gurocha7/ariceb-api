@@ -13,9 +13,7 @@ export class SectorService {
     private sectorRepository: SectorRepository, private buildingService: BuildingsService
   ) {}
 
-  async createSector(
-    createSectorDTO: CreateSectorDTO,
-  ): Promise<Sector> {
+  async createSector(createSectorDTO: CreateSectorDTO): Promise<Sector> {
     try {
       const {name,building_id} = createSectorDTO
       const building = await this.buildingService.getBuildingById(building_id)

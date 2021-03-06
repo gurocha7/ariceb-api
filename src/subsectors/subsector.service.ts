@@ -1,11 +1,38 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { SubsectorRepository } from './subsector.repository'
+import { CreateSubsectorDTO } from './dtos/createSubsector.dto';
+import { Subsector } from './subsector.entity';
+import { SectorService } from 'src/sectors/sector.service';
 
 @Injectable()
 export class SubsectorService {
-  // constructor(
-  //   @InjectRepository(SectorRepository)
-  //   private sectorRepository: SectorRepository,
-  // ) {}
+  constructor(
+    @InjectRepository(SubsectorRepository)
+    private subsectorRepository: SubsectorRepository,
+    private sectorService: SectorService
+  ) {}
+
+  async createSubsector(createSubsectorDTO: CreateSubsectorDTO): Promise<Subsector>{
+    try {
+      const {name,sector_id} = createSubsectorDTO
+      const sector = await this.sectorService.getSectorById(sector_id)
+      const newsubsector = this.subsectorRepository.create({
+        name,
+        sector
+      });
+      await this.subsectorRepository.save(newsubsector)
+      return newsubsector
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao cadastrar subsetor.');
+    }
+  }
+
+  async listSubsectors(): Promise<Subsector[]>{
+    try {
+      return await this.subsectorRepository.find()
+    } catch (error) {
+      throw new InternalServerErrorException('Não foi possível encontrar subsetores.');
+    }
+  }
 }
