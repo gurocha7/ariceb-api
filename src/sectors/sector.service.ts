@@ -38,11 +38,17 @@ export class SectorService {
     }
   }
 
+  async deleteSector(id: string): Promise<string>{
+    try {
+       await this.sectorRepository.delete({ id: id })
+       return 'Setor deletado com sucesso!'
+    } catch (error) {
+      throw new InternalServerErrorException('Setor não encontrado.');
+    }
+  }
+
   async updateSector(updateSectorDTO: UpdateSectorDTO, id: string): Promise<Sector>{
     try {
-      console.log("id do setor informado: ", id)
-      console.log("novos dados do setor informado: ", updateSectorDTO)
-
       const {building_id, name} = updateSectorDTO
       const building = await this.buildingService.getBuildingById(building_id)
       const newsector = await this.sectorRepository.create({

@@ -29,6 +29,12 @@ export class SectorController {
     return await this.sectorService.listSectors()
   }
 
+  @Delete(':id')
+  async deleteSector(@Param('id') id: string): Promise<String>{
+    const result = await this.sectorService.deleteSector(id)
+    return result
+  }
+
   @Put(':id')
   async updateSector(@Body() updateSectorDTO:UpdateSectorDTO, 
                      @Param('id') id: string ): Promise< Sector >{
