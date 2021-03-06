@@ -40,7 +40,8 @@ export class SectorService {
 
   async deleteSector(id: string): Promise<string>{
     try {
-       await this.sectorRepository.delete({ id: id })
+      const sector = await this.getSectorById(id)
+       await this.sectorRepository.delete({ id: sector.id })
        return 'Setor deletado com sucesso!'
     } catch (error) {
       throw new InternalServerErrorException('Setor não encontrado.');
