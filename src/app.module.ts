@@ -5,6 +5,7 @@ import { ClientsModule } from './clients/clients.module';
 import { BuildingsModule } from './buildings/buildings.module';
 import { SectorModule } from './sectors/sector.module';
 import typeOrmConfig from './config/typeorm.config';
+import { SubsectorModule } from './subsectors/subsector.module';
 
 @Module({
   imports: [
@@ -19,6 +20,7 @@ import typeOrmConfig from './config/typeorm.config';
     ClientsModule,
     BuildingsModule,
     SectorModule,
+    SubsectorModule,
   ],
   controllers: [],
   providers: [],
