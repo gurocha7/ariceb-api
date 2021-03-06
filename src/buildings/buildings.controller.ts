@@ -16,7 +16,7 @@ export class BuildingsController {
     summary: 'Atualizando um cliente',
   })
   @ApiResponse({
-    description: 'Cliente atualizado.',
+    description: 'Building atualizado.',
     status: HttpStatus.OK,
     type: CreateBuildingDTO,
   })
@@ -31,14 +31,22 @@ export class BuildingsController {
     return await this.buildingService.listBuildings();
   }
 
-  @Delete()
-  async deleteBuilding(@Body() deleteBuildingDTO: DeleteBuildingDTO): Promise<string>{
-    return await this.buildingService.deleteBuilding(deleteBuildingDTO.id);
+  @Delete(':id')
+  @ApiOperation({
+    summary: 'Deletando um prédio',
+  })  
+  @ApiResponse({
+    description: 'Prédio deletado com sucesso.',
+    status: HttpStatus.OK, 
+   })
+    async deleteBuilding(@Param('id') id: string): Promise<string>{
+    return await this.buildingService.deleteBuilding(id);
   }
 
-  @Put()
+  @Put(':id')
   async updateBuilding(@Body() updateBuildingDTO: UpdateBuildingDTO,
                        @Param('id') id: string): Promise<Building>{
-    return await this.buildingService.updateBuilding(updateBuildingDTO,id);
+    const building = await this.buildingService.updateBuilding(updateBuildingDTO,id);
+    return building;
   }
 }

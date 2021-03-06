@@ -8,5 +8,6 @@ import { BuildingsController } from './buildings.controller';
   imports: [TypeOrmModule.forFeature([BuildingRepository])],
   providers: [BuildingsService],
   controllers: [BuildingsController],
+  exports: [BuildingsService]
 })
 export class BuildingsModule {}

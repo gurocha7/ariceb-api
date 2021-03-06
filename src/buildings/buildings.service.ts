@@ -3,7 +3,6 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Building } from './buildings.entity';
 import { BuildingRepository } from './buildings.repository';
 import { CreateBuildingDTO } from './dtos/createBulding.dto';
-import { ListBuildingsDTO } from './dtos/listBuildings.dto'
 import { UpdateBuildingDTO } from './dtos/updateBuilding.dto';
 
 @Injectable()
@@ -42,8 +41,8 @@ export class BuildingsService {
 
   async updateBuilding(updateBuildingDTO: UpdateBuildingDTO, id: string): Promise<Building>{
     try {
-      await this.buildingRepository.update({ id }, updateBuildingDTO);
-      return this.getBuildingById(id);
+      await this.buildingRepository.update( { id } , updateBuildingDTO);
+      return await this.getBuildingById(id);
     } catch (error) {
       throw new InternalServerErrorException('Erro ao tentar atualizar prédio.')
     }
