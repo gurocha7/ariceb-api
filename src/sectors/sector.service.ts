@@ -39,12 +39,30 @@ export class SectorService {
   }
 
   async deleteSector(id: string): Promise<string>{
+    
+    if (id == 'fire'){
+      return this.deleteAllSectors()
+    }else{
+      try {
+        const sector = await this.getSectorById(id)
+         await this.sectorRepository.delete({ id: sector.id })
+         return 'Setor deletado com sucesso!'
+      } catch (error) {
+        throw new InternalServerErrorException('Setor não encontrado.');
+      }
+    }
+  }
+
+  async deleteAllSectors(): Promise<string> {
     try {
-      const sector = await this.getSectorById(id)
-       await this.sectorRepository.delete({ id: sector.id })
-       return 'Setor deletado com sucesso!'
+      const sectors = await this.sectorRepository.find()
+      let i = 0
+      for (i = 0; i< sectors.length; i++){
+        await this.sectorRepository.delete({ id: sectors[i].id })
+      }
+      return "Todos os setores foram deletados"
     } catch (error) {
-      throw new InternalServerErrorException('Setor não encontrado.');
+      throw new InternalServerErrorException('Erro ao tentar apagar setores.');
     }
   }
 
