@@ -9,5 +9,6 @@ import { SectorModule } from 'src/sectors/sector.module'
   imports: [TypeOrmModule.forFeature([SubsectorRepository]), SectorModule],
   providers: [SubsectorService],
   controllers: [SubsectorController],
+  exports:[SubsectorService]
 })
 export class SubsectorModule {}

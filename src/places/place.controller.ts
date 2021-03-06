@@ -1,7 +1,25 @@
-import { Body, Controller, Delete, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete,HttpStatus, Post, Query } from '@nestjs/common';
+import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PlaceService } from './place.service'
+import { CreatePlaceDTO } from './dtos/createPlace.dto';
+import { Place } from './place.entity';
 
 @Controller('v1/places')
 export class PlaceController {
   constructor(private placeService: PlaceService) {}
+
+  @Post()
+  @ApiOperation({
+    summary: 'Criando um lugar',
+  })
+  @ApiResponse({
+    description: 'Lugar criado.',
+    status: HttpStatus.OK,
+    type: CreatePlaceDTO,
+  })
+  async createPlace(
+    @Body() createPlaceDTO: CreatePlaceDTO,
+  ): Promise<Place> {
+    return await this.placeService.createPlace(createPlaceDTO);
+  }
 }
