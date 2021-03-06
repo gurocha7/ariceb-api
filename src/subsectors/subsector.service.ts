@@ -4,6 +4,7 @@ import { SubsectorRepository } from './subsector.repository'
 import { CreateSubsectorDTO } from './dtos/createSubsector.dto';
 import { Subsector } from './subsector.entity';
 import { SectorService } from 'src/sectors/sector.service';
+import { UpdateSubsectorDTO } from './dtos/updateSubsector.dto';
 
 @Injectable()
 export class SubsectorService {
@@ -33,6 +34,21 @@ export class SubsectorService {
       return await this.subsectorRepository.find()
     } catch (error) {
       throw new InternalServerErrorException('Não foi possível encontrar subsetores.');
+    }
+  }
+
+  async updateSubsector(updateSubsectorDTO: UpdateSubsectorDTO, id: string): Promise<Subsector>{
+    try {
+      const {sector_id, name} = updateSubsectorDTO
+      const sector = await this.sectorService.getSectorById(sector_id)
+      const newsubsector = await this.subsectorRepository.create({
+        name,
+        sector
+      });
+      await this.subsectorRepository.update( { id } , newsubsector);
+      return await this.getSubsectorById(id);
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao tentar atualizar subsetor.')
     }
   }
 
