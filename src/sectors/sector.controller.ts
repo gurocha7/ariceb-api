@@ -1,8 +1,9 @@
-import { Body, Controller, Delete, Post, Query, HttpStatus, Get } from '@nestjs/common';
+import { Body, Controller, Delete, Post, Put ,Query, HttpStatus, Get, Param } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SectorService } from './sector.service';
 import { CreateSectorDTO } from './dtos/createSector.dto';
 import { Sector } from './sector.entity';
+import { UpdateSectorDTO } from './dtos/updateSector.dto';
 
 @Controller('v1/sectors')
 export class SectorController {
@@ -26,5 +27,12 @@ export class SectorController {
   @Get()
   async listSectors(): Promise<Sector[]>{
     return await this.sectorService.listSectors()
+  }
+
+  @Put(':id')
+  async updateSector(@Body() updateSectorDTO:UpdateSectorDTO, 
+                     @Param('id') id: string ): Promise< Sector >{
+    const sector = await this.sectorService.updateSector(updateSectorDTO,id)
+    return sector;
   }
 }
