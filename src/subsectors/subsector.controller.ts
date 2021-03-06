@@ -1,4 +1,4 @@
-import { Body, Controller, Delete,Get,HttpStatus, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete,Get,HttpStatus, Post, Query, Param } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { SubsectorService } from './subsector.service';
 import { CreateSubsectorDTO } from './dtos/createSubsector.dto'
@@ -26,5 +26,10 @@ export class SubsectorController {
   @Get()
   async listSubsectors(): Promise<Subsector[]>{
     return await this.subsectorService.listSubsectors()
+  }
+
+  @Delete(':id')
+  async deleteSubsector(@Param('id') id: string): Promise<string>{
+    return await this.subsectorService.deleteSubsector(id)
   }
 }

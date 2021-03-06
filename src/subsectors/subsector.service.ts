@@ -35,4 +35,22 @@ export class SubsectorService {
       throw new InternalServerErrorException('Não foi possível encontrar subsetores.');
     }
   }
+
+  async deleteSubsector(id: string): Promise<string>{
+    try {
+      const subsector = await this.getSubsectorById(id)
+      await this.subsectorRepository.delete({ id: subsector.id })
+      return "Subsetor apagado com sucesso!"
+    } catch (error) {
+      throw new InternalServerErrorException('Não foi possível encontrar o subsetor.');
+    }
+  }
+
+  async getSubsectorById(id: string): Promise<Subsector> {
+    const subsector = await this.subsectorRepository.findOne(id);
+    if (!subsector) {
+      throw new InternalServerErrorException('Subsetor não encontrado.')
+    }
+    return subsector;
+  }
 }
