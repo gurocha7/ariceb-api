@@ -3,6 +3,7 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { PlacesTypeRepository } from './placesType.repository'
 import { PlacesType } from './placesType.entity';
 import { CreatePlacesTypeDTO } from './dtos/createPlacesType.dto';
+import { UpdatePlacesTypeDTO } from './dtos/updatePlacesType.dto';
 
 @Injectable()
 export class PlacesTypeService {
@@ -33,5 +34,24 @@ export class PlacesTypeService {
       throw new InternalServerErrorException('Type não encontrado.')
     }
     return type;
+  }
+
+  async updatePlacesType(updatePlacesTypeDTO: UpdatePlacesTypeDTO, id: string): Promise<PlacesType>{
+    try {
+      await this.placesTypeRepository.update( { id } , updatePlacesTypeDTO);
+      return await this.getTypeById(id);
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao tentar atualizar type.')
+    }
+  }
+
+  async deletePlacesType(id: string): Promise<string>{
+    try {
+      const type = await this.getTypeById(id)
+      await this.placesTypeRepository.delete({id: type.id})
+      return "Type deletado com sucesso!"
+    } catch (error) {
+      throw new InternalServerErrorException('Não foi possível apagar o lugar');
+    }
   }
 }
