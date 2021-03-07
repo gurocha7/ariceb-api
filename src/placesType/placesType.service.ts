@@ -15,7 +15,15 @@ export class PlacesTypeService {
     try {
       return await this.placesTypeRepository.save(createPlacesTypeDTO)
     } catch (error) {
-      throw new InternalServerErrorException('Erro ao cadastrar setor.');
+      throw new InternalServerErrorException('Erro ao cadastrar placesType.');
+    }
+  }
+
+  async listPlacesType(): Promise<PlacesType[]>{
+    try {
+      return await this.placesTypeRepository.find()
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao buscar placesType.');
     }
   }
 }

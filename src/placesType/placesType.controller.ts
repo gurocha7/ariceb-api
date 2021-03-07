@@ -1,4 +1,4 @@
-import { Body, Controller, Delete, HttpStatus ,Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete, HttpStatus ,Post, Query, Get } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PlacesTypeService} from './placesType.service'
 import { CreatePlacesTypeDTO } from './dtos/createPlacesType.dto';
@@ -10,10 +10,10 @@ export class PlacesTypeController {
 
   @Post()
   @ApiOperation({
-    summary: 'Criando um setor',
+    summary: 'Criando um placeType',
   })
   @ApiResponse({
-    description: 'Setor criado.',
+    description: 'PlaceType criado.',
     status: HttpStatus.OK,
     type: CreatePlacesTypeDTO,
   })
@@ -21,6 +21,11 @@ export class PlacesTypeController {
     @Body() createPlacesTypeDTO: CreatePlacesTypeDTO,
   ): Promise<PlacesType> {
     return await this.placesTypeService.createPlacesType(createPlacesTypeDTO);
+  }
+
+  @Get()
+  async listPlacesType(): Promise<PlacesType[]>{
+    return await this.placesTypeService.listPlacesType()
   }
 
 }
