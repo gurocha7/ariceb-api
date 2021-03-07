@@ -26,4 +26,12 @@ export class PlacesTypeService {
       throw new InternalServerErrorException('Erro ao buscar placesType.');
     }
   }
+
+  async getTypeById(id: string): Promise<PlacesType> {
+    const type = await this.placesTypeRepository.findOne(id);
+    if (!type) {
+      throw new InternalServerErrorException('Type não encontrado.')
+    }
+    return type;
+  }
 }

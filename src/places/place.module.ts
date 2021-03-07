@@ -4,9 +4,10 @@ import { PlaceRepository } from './place.repository'
 import { PlaceService } from './place.service'
 import { PlaceController } from './place.controller'
 import { SubsectorModule } from 'src/subsectors/subsector.module';
+import { PlacesTypeModule } from 'src/placesType/placesType.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([PlaceRepository]), SubsectorModule],
+  imports: [TypeOrmModule.forFeature([PlaceRepository]), SubsectorModule, PlacesTypeModule],
   providers: [PlaceService],
   controllers: [PlaceController],
 })

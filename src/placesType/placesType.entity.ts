@@ -12,6 +12,7 @@ import {
   import { Place } from 'src/places/place.entity'
   
   @Entity('placesType')
+  @Unique(['name'])
   export class PlacesType extends BaseEntity {
     @PrimaryGeneratedColumn()
     id: string;

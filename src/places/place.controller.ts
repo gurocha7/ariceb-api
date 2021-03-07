@@ -1,4 +1,4 @@
-import { Body, Controller, Delete,HttpStatus, Post, Query } from '@nestjs/common';
+import { Body, Controller, Delete,HttpStatus, Post, Query, Get } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { PlaceService } from './place.service'
 import { CreatePlaceDTO } from './dtos/createPlace.dto';
@@ -21,5 +21,10 @@ export class PlaceController {
     @Body() createPlaceDTO: CreatePlaceDTO,
   ): Promise<Place> {
     return await this.placeService.createPlace(createPlaceDTO);
+  }
+
+  @Get()
+  async listPlaces(): Promise<Place[]>{
+    return await this.placeService.listPlaces()
   }
 }

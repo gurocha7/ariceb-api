@@ -33,10 +33,10 @@ import { PlacesType } from 'src/placesType/placesType.entity';
     name: string;
 
     @Column({ nullable: false, type: 'varchar' })
-    lat: Double;
+    lat: string;
 
     @Column({ nullable: false, type: 'varchar' })
-    long: Double;
+    long: string;
   
     @CreateDateColumn()
     createdAt: Date;

@@ -11,7 +11,7 @@ export class CreatePlaceDTO {
 
   name: string;
   subsector_id: string;
-  lat: Double;
-  long: Double;
+  lat: string;
+  long: string;
   type_id: string;
 }
