@@ -32,11 +32,11 @@ import { PlacesType } from 'src/placesType/placesType.entity';
     @Column({ nullable: false, type: 'varchar', length: 200 })
     name: string;
 
-    // @Column({ nullable: false, type: 'Double' })
-    // lat: Double;
+    @Column({ nullable: false, type: 'varchar' })
+    lat: Double;
 
-    // @Column({ nullable: false, type: 'Double' })
-    // long: Double;
+    @Column({ nullable: false, type: 'varchar' })
+    long: Double;
   
     @CreateDateColumn()
     createdAt: Date;

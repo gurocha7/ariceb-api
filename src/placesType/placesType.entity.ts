@@ -7,6 +7,7 @@ import {
     PrimaryGeneratedColumn,
     CreateDateColumn,
     UpdateDateColumn,
+    Column,
   } from 'typeorm';
   import { Place } from 'src/places/place.entity'
   
@@ -18,6 +19,9 @@ import {
     @OneToOne(() => Place)
     @JoinColumn({ name: "place_id" })
     place: Place;
+
+    @Column({nullable: false, type: 'varchar', length: 200})
+    name: String
   
     @CreateDateColumn()
     createdAt: Date;
