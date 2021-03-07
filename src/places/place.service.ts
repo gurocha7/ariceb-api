@@ -41,4 +41,22 @@ export class PlaceService {
       throw new InternalServerErrorException('Erro ao buscar lugares.');
     }
   }
+
+  async deletePlace(id: string): Promise<string>{
+    try {
+      const place = await this.getPlaceById(id)
+      await this.placeRepository.delete({id: place.id})
+      return "Lugar deletado com sucesso!"
+    } catch (error) {
+      throw new InternalServerErrorException('Não foi possível apagar o lugar');
+    }
+  }
+
+  async getPlaceById(id: string): Promise<Place> {
+    const place = await this.placeRepository.findOne(id);
+    if (!place) {
+      throw new InternalServerErrorException('Lugar não encontrado.')
+    }
+    return place;
+  }
 }

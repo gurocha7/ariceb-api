@@ -10,6 +10,7 @@ import {
     CreateDateColumn,
     UpdateDateColumn,
     Double,
+    OneToMany,
   } from 'typeorm';
 
 import { Subsector } from 'src/subsectors/subsector.entity';
@@ -21,7 +22,7 @@ import { PlacesType } from 'src/placesType/placesType.entity';
     @PrimaryGeneratedColumn()
     id: string;
 
-    @OneToOne(() => PlacesType)
+    @ManyToOne(() => PlacesType)
     @JoinColumn({ name: "type_id" })
     placesType: PlacesType;
   
