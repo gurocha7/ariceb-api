@@ -9,4 +9,4 @@ import { PlacesTypeService } from './placesType.service'
   providers: [PlacesTypeService],
   controllers: [PlacesTypeController],
 })
-export class SectorModule {}
+export class PlacesTypeModule {}

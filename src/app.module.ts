@@ -7,6 +7,7 @@ import { SectorModule } from './sectors/sector.module';
 import typeOrmConfig from './config/typeorm.config';
 import { SubsectorModule } from './subsectors/subsector.module';
 import { PlaceModule } from './places/place.module';
+import { PlacesTypeModule } from './placesType/placesType.module'
 
 @Module({
   imports: [
@@ -23,6 +24,7 @@ import { PlaceModule } from './places/place.module';
     SectorModule,
     SubsectorModule,
     PlaceModule,
+    PlacesTypeModule,
   ],
   controllers: [],
   providers: [],
