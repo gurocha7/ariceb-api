@@ -10,4 +10,5 @@ export class UpdatePlaceDTO {
   
   name: string;
   subsector_id: string;
+  type_id: string
 }

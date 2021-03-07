@@ -5,6 +5,7 @@ import { CreatePlaceDTO } from './dtos/createPlace.dto';
 import { Place } from './place.entity';
 import { SubsectorService } from 'src/subsectors/subsector.service';
 import { PlacesTypeService } from 'src/placesType/placesType.service';
+import { UpdatePlaceDTO } from './dtos/updatePlace.dto';
 
 @Injectable()
 export class PlaceService {
@@ -58,5 +59,22 @@ export class PlaceService {
       throw new InternalServerErrorException('Lugar não encontrado.')
     }
     return place;
+  }
+
+  async updatePlace(updatePlaceDTO: UpdatePlaceDTO, id: string): Promise<Place>{
+    try {
+      const {subsector_id,type_id, name} = updatePlaceDTO
+      const subsector = await this.subsectorService.getSubsectorById(subsector_id)
+      const placesType = await this.placesTypeService.getTypeById(type_id)
+      const newplace = this.placeRepository.create({
+        name,
+        subsector,
+        placesType
+      });
+      await this.placeRepository.update( { id } , newplace);
+      return await this.getPlaceById(id);
+    } catch (error) {
+      throw new InternalServerErrorException('Erro ao tentar atualizar lugar.')
+    }
   }
 }
