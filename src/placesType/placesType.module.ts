@@ -8,5 +8,6 @@ import { PlacesTypeService } from './placesType.service'
   imports: [TypeOrmModule.forFeature([PlacesTypeRepository])],
   providers: [PlacesTypeService],
   controllers: [PlacesTypeController],
+  exports: [PlacesTypeService]
 })
-export class SectorModule {}
+export class PlacesTypeModule {}
