@@ -10,4 +10,6 @@ export class UpdateBuildingDTO {
   
   name: string;
   number: number;
+  lat: number;
+  long: number;
 }

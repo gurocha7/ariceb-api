@@ -27,9 +27,9 @@ export class Building extends BaseEntity {
   @UpdateDateColumn()
   updatedAt: Date;
 
-  @Column({nullable: false})
+  @Column({nullable: false, type: 'float', default: 0.0})
   lat: number;
 
-  @Column({nullable: false})
-  lon: number;
+  @Column({nullable: false, type: 'float', default: 0.0})
+  long: number;
 }

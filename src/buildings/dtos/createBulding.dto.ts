@@ -9,4 +9,6 @@ export class CreateBuildingDTO {
   })
   name: string;
   number: number;
+  lat: number;
+  long: number;
 }
