@@ -6,6 +6,7 @@ import {
   Column,
   CreateDateColumn,
   UpdateDateColumn,
+  Double,
 } from 'typeorm';
 
 @Entity('buildings')
@@ -25,4 +26,10 @@ export class Building extends BaseEntity {
 
   @UpdateDateColumn()
   updatedAt: Date;
+
+  @Column({nullable: false})
+  lat: number;
+
+  @Column({nullable: false})
+  lon: number;
 }

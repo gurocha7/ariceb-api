@@ -11,7 +11,7 @@ import {
   } from 'typeorm';
   import { Place } from 'src/places/place.entity'
   
-  @Entity('placesType')
+  @Entity('places_type')
   @Unique(['name'])
   export class PlacesType extends BaseEntity {
     @PrimaryGeneratedColumn()
