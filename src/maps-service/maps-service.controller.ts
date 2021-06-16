@@ -9,8 +9,16 @@ export class RouteController {
     constructor(private routeService: RouteService){}
 
     @Get()
+    @ApiOperation({
+        summary: 'Pegando rota',
+      })
+      @ApiResponse({
+        description: 'Trajeto obtido com sucesso',
+        status: HttpStatus.OK
+        // type: CreatePlaceDTO,
+      })
     async route(): Promise<Route>{
         return await this.routeService.route()
-      }
+    }
 
 }
