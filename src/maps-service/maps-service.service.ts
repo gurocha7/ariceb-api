@@ -14,5 +14,5 @@ export class RouteService {
           throw new InternalServerErrorException('Erro ao buscar lugares.');
         }
       }
-
+      
 }
