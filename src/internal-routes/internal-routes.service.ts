@@ -1,6 +1,6 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-// import { CreateSubsectorDTO } from './dtos/createSubsector.dto';
+import {CreateInternalRouteDTO} from './dtos/createInternalRoutes.dto'
 import { InternalRouteRepository } from './internal-routes.repository'
 import { InternalRoute } from './internal-routes.entity'
 import { SubsectorService} from 'src/subsectors/subsector.service'
@@ -13,8 +13,24 @@ export class InternalRouteService {
         private sectorService: SubsectorService
       ) {}
 
+    async createRoute(createInternalRouteDTO: CreateInternalRouteDTO): Promise<InternalRoute>{
+        try {
+            const {origin_id,destination_id,steps} = createInternalRouteDTO
+            const originId = await this.sectorService.getSubsectorById(origin_id)
+            const destinationId = await this.sectorService.getSubsectorById(destination_id)
+            const newroute = this.internalrouteRepository.create({
+            originId,
+            destinationId,
+            steps: JSON.stringify(steps)
+            });
+            await this.internalrouteRepository.save(newroute)
+            return newroute
+        } catch (error) {
+            throw new InternalServerErrorException('Erro ao cadastrar subsetor.');
+        }
+    }
+
     async route(): Promise<InternalRoute>{
-        console.log("entrou aqui")
         try {
             const r = new InternalRoute()
             r.steps = "[]"

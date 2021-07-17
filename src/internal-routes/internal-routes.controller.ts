@@ -10,6 +10,21 @@ export class InternalRouteController {
 
     constructor(private internalrouteService: InternalRouteService){}
 
+    @Post()
+    @ApiOperation({
+    summary: 'Criando uma rota interna',
+    })
+    @ApiResponse({
+    description: 'Rota interna criada.',
+    status: HttpStatus.OK,
+    type: CreateInternalRouteDTO,
+    })
+    async createSubsector(
+    @Body() createInternalRouteDTO: CreateInternalRouteDTO,
+    ): Promise<InternalRoute> {
+    return await this.internalrouteService.createRoute(createInternalRouteDTO);
+    }
+
     @Get()
     async route(): Promise<InternalRoute>{
         return await this.internalrouteService.route();
