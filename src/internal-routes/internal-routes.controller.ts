@@ -1,8 +1,8 @@
 import { Body, Controller, Delete,HttpStatus,Param ,Post, Query, Get, Put } from '@nestjs/common';
 import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-// import { RouteService } from './maps-service.service'
-// import { Route} from './maps-service.entity'
-// import { CreateRouteDTO } from './dtos/createRoute.dto'
+import {CreateInternalRouteDTO} from './dtos/createInternalRoutes.dto'
+import {InternalRouteService} from './internal-routes.service'
+import {InternalRoute} from './internal-routes.entity'
 import { from } from 'rxjs';
 
 @Controller('v1/internalroute')
