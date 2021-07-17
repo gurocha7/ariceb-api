@@ -29,4 +29,9 @@ export class InternalRouteController {
     async route(): Promise<InternalRoute>{
         return await this.internalrouteService.route();
     }
+
+    @Delete(':id')
+    async deleteRoute(@Param('id') id: string): Promise<string>{
+        return await this.internalrouteService.deleteRoute(id)
+    }
 }

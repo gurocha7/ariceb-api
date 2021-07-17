@@ -32,12 +32,31 @@ export class InternalRouteService {
 
     async route(): Promise<InternalRoute>{
         try {
-            const r = new InternalRoute()
-            r.steps = "[]"
+            const r = await this.getRouteById("2")
+            // const r = new InternalRoute()
+            r.steps = JSON.parse(r.steps)
         //   return await this.placeRepository.find()
             return r
         } catch (error) {
           throw new InternalServerErrorException('Erro ao buscar rota.');
         }
+    }
+
+    async deleteRoute(id: string): Promise<string>{
+        try {
+            const route = await this.getRouteById(id)
+            await this.internalrouteRepository.delete({ id: route.id })
+            return "Rota interna apagada com sucesso!"
+        } catch (error) {
+            throw new InternalServerErrorException('Não foi possível encontrar a rota.');
+        }
+    }
+
+    async getRouteById(id: string): Promise<InternalRoute> {
+        const route = await this.internalrouteRepository.findOne(id);
+        if (!route) {
+          throw new InternalServerErrorException('Rota interna não encontrado.')
+        }
+        return route;
       }
 }
