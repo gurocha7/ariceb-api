@@ -24,6 +24,7 @@ export class SectorService {
       await this.sectorRepository.save(newsector)
       return newsector
     } catch (error) {
+      console.log(error)
       throw new InternalServerErrorException('Erro ao cadastrar setor.');
     }
   }
