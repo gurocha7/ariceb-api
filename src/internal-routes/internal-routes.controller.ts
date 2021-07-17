@@ -8,19 +8,10 @@ import { from } from 'rxjs';
 @Controller('v1/internalroute')
 export class InternalRouteController {
 
-    // constructor(private routeService: RouteService){}
+    constructor(private internalrouteService: InternalRouteService){}
 
-    // @Get()
-    // @ApiOperation({
-    //     summary: 'Pegando rota',
-    //   })
-    //   @ApiResponse({
-    //     description: 'Trajeto obtido com sucesso',
-    //     status: HttpStatus.OK,
-    //     type: CreateRouteDTO,
-    //   })
-    // async route(): Promise<Route>{
-    //     return await this.routeService.route()
-    // }
-
+    @Get()
+    async route(): Promise<InternalRoute>{
+        return await this.internalrouteService.route();
+    }
 }

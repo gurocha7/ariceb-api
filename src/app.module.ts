@@ -9,6 +9,7 @@ import { SubsectorModule } from './subsectors/subsector.module';
 import { PlaceModule } from './places/place.module';
 import { PlacesTypeModule } from './placesType/placesType.module'
 import { MapsServiceModule } from './maps-service/maps-service.module'
+import { InternalRouteModule} from './internal-routes/internal-routes.module'
 
 @Module({
   imports: [
@@ -26,7 +27,8 @@ import { MapsServiceModule } from './maps-service/maps-service.module'
     SubsectorModule,
     PlaceModule,
     PlacesTypeModule,
-    MapsServiceModule
+    MapsServiceModule,
+    InternalRouteModule
   ],
   controllers: [],
   providers: [],
