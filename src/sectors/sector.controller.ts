@@ -29,6 +29,11 @@ export class SectorController {
     return await this.sectorService.listSectors()
   }
 
+  @Get(':id')
+  async listSectorsByBuilding(@Param('id') id: string): Promise<Sector[]>{
+    return await this.sectorService.listSectorsByBuildingId(id);
+  }
+
   @Delete(':id')
   async deleteSector(@Param('id') id: string): Promise<String>{
     const result = await this.sectorService.deleteSector(id)

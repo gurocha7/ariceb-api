@@ -5,6 +5,8 @@ import { BuildingsService  } from '../buildings/buildings.service'
 import { CreateSectorDTO } from './dtos/createSector.dto';
 import { UpdateSectorDTO } from './dtos/updateSector.dto'
 import { Sector } from './sector.entity';
+import { Double } from 'typeorm';
+import { Building } from 'src/buildings/buildings.entity';
 
 @Injectable()
 export class SectorService {
@@ -34,6 +36,15 @@ export class SectorService {
       return this.sectorRepository.find()
     } catch (error) {
       throw new InternalServerErrorException('Erro ao cadastrar listar setores.');
+    }
+  }
+  
+  async listSectorsByBuildingId(id: string): Promise<Sector[]> {
+    try {
+      const sectors = await this.getSectorsInBuilding(id);
+      return sectors
+    } catch (error) {
+      throw new InternalServerErrorException('Setor não encontrado.');
     }
   }
 
@@ -86,5 +97,20 @@ export class SectorService {
       throw new InternalServerErrorException('Setor não encontrado.')
     }
     return sector;
+  }
+
+  async getSectorsInBuilding(id: string): Promise<Sector[]> {
+    let sectors: Sector[] = [];
+    // const sector = await this.sectorRepository.findOne(id);
+    const sectorsFind = this.sectorRepository.find
+    let i = 0
+      for (i = 0; i< sectorsFind.length; i++){
+        const s: Sector = await this.sectorRepository[i]
+        console.log(s);
+      }
+    if (!sectors) {
+      throw new InternalServerErrorException('Nenhum setor foi encontrado.')
+    }
+    return sectors;
   }
 }

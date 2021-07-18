@@ -31,6 +31,7 @@ export class InternalRouteService {
     }
 
     async route(): Promise<InternalRoute>{
+        console.log("entrando")
         try {
             const r = await this.getRouteById("2")
             // const r = new InternalRoute()
