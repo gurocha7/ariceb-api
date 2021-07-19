@@ -99,18 +99,9 @@ export class SectorService {
     return sector;
   }
 
-  async getSectorsInBuilding(id: string): Promise<Sector[]> {
-    let sectors: Sector[] = [];
-    // const sector = await this.sectorRepository.findOne(id);
-    const sectorsFind = this.sectorRepository.find
-    let i = 0
-      for (i = 0; i< sectorsFind.length; i++){
-        const s: Sector = await this.sectorRepository[i]
-        console.log(s);
-      }
-    if (!sectors) {
-      throw new InternalServerErrorException('Nenhum setor foi encontrado.')
-    }
+  async getSectorsInBuilding(buildingId: string): Promise<Sector[]> {
+    const building = await this.buildingService.getBuildingById(buildingId);
+    const sectors = await this.sectorRepository.find({building})
     return sectors;
   }
 }
