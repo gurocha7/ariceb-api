@@ -4,6 +4,7 @@ import { Building } from './buildings.entity';
 import { BuildingRepository } from './buildings.repository';
 import { CreateBuildingDTO } from './dtos/createBulding.dto';
 import { UpdateBuildingDTO } from './dtos/updateBuilding.dto';
+import { ListBuildingsDTO } from './dtos/listBuildings.dto';
 
 @Injectable()
 export class BuildingsService {
@@ -22,11 +23,14 @@ export class BuildingsService {
     }
   }
 
-  async listBuildings(): Promise<Building[]>{
+  async listBuildings(): Promise<ListBuildingsDTO>{
     try {
-       return this.buildingRepository.find();
+      let buildings = await this.buildingRepository.find();
+      let buildingsModel = new ListBuildingsDTO();
+      buildingsModel.buildings = buildings;
+      return buildingsModel
     } catch (error) {
-      throw new InternalServerErrorException('Erro ao listas prédios.')
+      throw new InternalServerErrorException('Erro ao listar prédios.')
     }
   }
 
