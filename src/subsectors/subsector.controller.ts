@@ -29,6 +29,11 @@ export class SubsectorController {
     return await this.subsectorService.listSubsectors()
   }
 
+  @Get(':id')
+  async listSubsctorBySector(@Param('id') id: string): Promise<Subsector[]>{
+    return await this.subsectorService.getSubsectorsInSector(id);
+  }
+
   @Delete(':id')
   async deleteSubsector(@Param('id') id: string): Promise<string>{
     return await this.subsectorService.deleteSubsector(id)

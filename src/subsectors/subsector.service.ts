@@ -69,4 +69,10 @@ export class SubsectorService {
     }
     return subsector;
   }
+
+  async getSubsectorsInSector(sectorId: string): Promise<Subsector[]> {
+    const sector = await this.sectorService.getSectorById(sectorId);
+    const subsectors = await this.subsectorRepository.find({sector});
+    return subsectors;
+  }
 }
