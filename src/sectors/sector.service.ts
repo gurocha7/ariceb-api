@@ -7,6 +7,7 @@ import { UpdateSectorDTO } from './dtos/updateSector.dto'
 import { Sector } from './sector.entity';
 import { Double } from 'typeorm';
 import { Building } from 'src/buildings/buildings.entity';
+import { ListSectorDTO } from './dtos/listSectors.dto';
 
 @Injectable()
 export class SectorService {
@@ -39,7 +40,7 @@ export class SectorService {
     }
   }
   
-  async listSectorsByBuildingId(id: string): Promise<Sector[]> {
+  async listSectorsByBuildingId(id: string): Promise<ListSectorDTO> {
     try {
       const sectors = await this.getSectorsInBuilding(id);
       return sectors
@@ -99,9 +100,11 @@ export class SectorService {
     return sector;
   }
 
-  async getSectorsInBuilding(buildingId: string): Promise<Sector[]> {
+  async getSectorsInBuilding(buildingId: string): Promise<ListSectorDTO> {
     const building = await this.buildingService.getBuildingById(buildingId);
     const sectors = await this.sectorRepository.find({building})
-    return sectors;
+    let listSectors = new ListSectorDTO();
+    listSectors.sectors = sectors
+    return listSectors;
   }
 }
