@@ -4,6 +4,7 @@ import { SubsectorService } from './subsector.service';
 import { CreateSubsectorDTO } from './dtos/createSubsector.dto'
 import { Subsector } from './subsector.entity';
 import { UpdateSubsectorDTO } from './dtos/updateSubsector.dto';
+import { ListSubsectorDTO } from './dtos/listSubsector.dto';
 
 @Controller('v1/subsectors')
 export class SubsectorController {
@@ -30,7 +31,7 @@ export class SubsectorController {
   }
 
   @Get(':id')
-  async listSubsctorBySector(@Param('id') id: string): Promise<Subsector[]>{
+  async listSubsctorBySector(@Param('id') id: string): Promise<ListSubsectorDTO>{
     return await this.subsectorService.getSubsectorsInSector(id);
   }
 
