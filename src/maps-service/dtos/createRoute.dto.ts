@@ -3,8 +3,8 @@ import { Double } from 'typeorm';
 
 export class CreateRouteDTO {
 
-  origLat: number;
-  origLong: number;
-  destLat: number;
-  destLong: number;
+  originLat: number;
+  originLong: number;
+  destinyLat: number;
+  destinyLong: number;
 }

@@ -9,7 +9,7 @@ export class RouteService {
         try {
             const r = new Route()
             r.id = "dbsdfbsdhf"
-            r.name = "rota 1"
+            
         //   return await this.placeRepository.find()
             return r
         } catch (error) {
