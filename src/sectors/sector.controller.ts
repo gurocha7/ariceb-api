@@ -4,6 +4,7 @@ import { SectorService } from './sector.service';
 import { CreateSectorDTO } from './dtos/createSector.dto';
 import { Sector } from './sector.entity';
 import { UpdateSectorDTO } from './dtos/updateSector.dto';
+import { ListSectorDTO } from './dtos/listSectors.dto';
 
 @Controller('v1/sectors')
 export class SectorController {
@@ -27,6 +28,11 @@ export class SectorController {
   @Get()
   async listSectors(): Promise<Sector[]>{
     return await this.sectorService.listSectors()
+  }
+
+  @Get(':id')
+  async listSectorsByBuilding(@Param('id') id: string): Promise<ListSectorDTO>{
+    return await this.sectorService.listSectorsByBuildingId(id);
   }
 
   @Delete(':id')

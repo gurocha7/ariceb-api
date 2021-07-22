@@ -5,6 +5,7 @@ import { CreateSubsectorDTO } from './dtos/createSubsector.dto';
 import { Subsector } from './subsector.entity';
 import { SectorService } from 'src/sectors/sector.service';
 import { UpdateSubsectorDTO } from './dtos/updateSubsector.dto';
+import { ListSubsectorDTO } from './dtos/listSubsector.dto';
 
 @Injectable()
 export class SubsectorService {
@@ -68,5 +69,13 @@ export class SubsectorService {
       throw new InternalServerErrorException('Subsetor não encontrado.')
     }
     return subsector;
+  }
+
+  async getSubsectorsInSector(sectorId: string): Promise<ListSubsectorDTO> {
+    const sector = await this.sectorService.getSectorById(sectorId);
+    const subsectors = await this.subsectorRepository.find({sector});
+    let subsectorsList = new ListSubsectorDTO();
+    subsectorsList.subsectors = subsectors
+    return subsectorsList;
   }
 }

@@ -8,6 +8,8 @@ import typeOrmConfig from './config/typeorm.config';
 import { SubsectorModule } from './subsectors/subsector.module';
 import { PlaceModule } from './places/place.module';
 import { PlacesTypeModule } from './placesType/placesType.module'
+import { MapsServiceModule } from './maps-service/maps-service.module'
+import { InternalRouteModule} from './internal-routes/internal-routes.module'
 
 @Module({
   imports: [
@@ -25,6 +27,8 @@ import { PlacesTypeModule } from './placesType/placesType.module'
     SubsectorModule,
     PlaceModule,
     PlacesTypeModule,
+    MapsServiceModule,
+    InternalRouteModule
   ],
   controllers: [],
   providers: [],
