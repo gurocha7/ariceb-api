@@ -6,9 +6,10 @@ import { RouteController } from './maps-service.controller'
 
 import { SubsectorModule } from 'src/subsectors/subsector.module';
 import { PlacesTypeModule } from 'src/placesType/placesType.module';
+import { BuildingsModule } from 'src/buildings/buildings.module';
 
 @Module({
-  imports: [TypeOrmModule.forFeature([MapsServiceRepository])],
+  imports: [TypeOrmModule.forFeature([MapsServiceRepository]), BuildingsModule],
   providers: [RouteService],
   controllers: [RouteController],
 })

@@ -24,15 +24,15 @@ import {
     @Column({ nullable: false, type: 'varchar', length: 200 })
     destinyBuildingID: string;
 
-    @Column({nullable: false})
+    @Column({nullable: false, type: 'float', default: 0.0})
     originLat: number;
 
-    @Column({nullable: false})
+    @Column({nullable: false, type: 'float', default: 0.0})
     originLong: number;
 
-    @Column({nullable: false})
+    @Column({nullable: false, type: 'float', default: 0.0})
     destinyLat: number;
     
-    @Column({nullable: false})
+    @Column({nullable: false, type: 'float', default: 0.0})
     destinyLong: number;
   } 
