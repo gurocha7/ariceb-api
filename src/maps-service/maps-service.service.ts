@@ -6,6 +6,7 @@ import { CreateRouteDTO } from './dtos/createRoute.dto';
 import { BuildingsService } from 'src/buildings/buildings.service';
 import { Building } from 'src/buildings/buildings.entity'
 import { ListRouteDTO } from './dtos/listRoute.dto';
+import { SingleRouteDTO } from './dtos/singleRoute.dto';
 
 @Injectable()
 export class RouteService {
@@ -25,9 +26,9 @@ export class RouteService {
       }
     }
 
-    async route(originId: string,destinyId: string): Promise<ListRouteDTO>{
-          const buildingOrigin = await this.buildingService.getBuildingById(originId);
-          const buildingDestiny = await this.buildingService.getBuildingById(destinyId);
+    async route(singleRouteDTO: SingleRouteDTO): Promise<ListRouteDTO>{
+          const buildingOrigin = await this.buildingService.getBuildingById(singleRouteDTO.originID);
+          const buildingDestiny = await this.buildingService.getBuildingById(singleRouteDTO.destinyID);
           const r = new ListRouteDTO()
           r.buildingOrigin = buildingOrigin
           r.buildingDestiny = buildingDestiny

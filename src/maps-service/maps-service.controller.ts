@@ -5,6 +5,7 @@ import { Route} from './maps-service.entity'
 import { CreateRouteDTO } from './dtos/createRoute.dto'
 import { from } from 'rxjs';
 import { ListRouteDTO } from './dtos/listRoute.dto';
+import { SingleRouteDTO } from './dtos/singleRoute.dto';
 
 @Controller('v1/route')
 export class RouteController {
@@ -20,8 +21,8 @@ export class RouteController {
         status: HttpStatus.OK,
         type: ListRouteDTO,
       })
-    async route(@Body('originID') originID: string,@Body('destinyID') destinyID: string): Promise<ListRouteDTO>{
-      return await this.routeService.route(originID,destinyID);
+    async route(@Query() singleRouteDTO: SingleRouteDTO): Promise<ListRouteDTO>{
+      return await this.routeService.route(singleRouteDTO);
     }
 
     @Post()
