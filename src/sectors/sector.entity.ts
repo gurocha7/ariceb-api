@@ -18,7 +18,7 @@ export class Sector extends BaseEntity {
   id: string;
 
   @ManyToOne(() => Building)
-  @JoinColumn({ name: "building_id" })
+  @JoinColumn({ name: 'building_id' })
   building: Building;
 
   @Column({ nullable: false, type: 'varchar', length: 200 })
