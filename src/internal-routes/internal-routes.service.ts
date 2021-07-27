@@ -25,7 +25,7 @@ export class InternalRouteService {
             destinationId,
             destinationTag,
             steps: JSON.stringify(steps),
-            nextQrcodeTags
+            nextQrcodeTags: JSON.stringify(nextQrcodeTags)
             });
             await this.internalrouteRepository.save(newroute)
             return newroute

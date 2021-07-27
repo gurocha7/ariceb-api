@@ -39,7 +39,7 @@ import {
     steps: string;
 
     @Column()
-    nextQrcodeTags: [string];
+    nextQrcodeTags: string;
   
     @CreateDateColumn()
     createdAt: Date;
