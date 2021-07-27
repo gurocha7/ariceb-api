@@ -4,6 +4,7 @@ import {CreateInternalRouteDTO} from './dtos/createInternalRoutes.dto'
 import { InternalRouteRepository } from './internal-routes.repository'
 import { InternalRoute } from './internal-routes.entity'
 import { SubsectorService} from 'src/subsectors/subsector.service'
+import { ListInternalRoute } from './dtos/listInteralRoute.dto';
 
 @Injectable()
 export class InternalRouteService {
@@ -15,13 +16,16 @@ export class InternalRouteService {
 
     async createRoute(createInternalRouteDTO: CreateInternalRouteDTO): Promise<InternalRoute>{
         try {
-            const {origin_id,destination_id,steps} = createInternalRouteDTO
+            const {origin_id,qrcodeTag,destination_id,destinationTag,steps,nextQrcodeTags} = createInternalRouteDTO
             const originId = await this.sectorService.getSubsectorById(origin_id)
             const destinationId = await this.sectorService.getSubsectorById(destination_id)
             const newroute = this.internalrouteRepository.create({
             originId,
+            qrcodeTag,
             destinationId,
-            steps: JSON.stringify(steps)
+            destinationTag,
+            steps: JSON.stringify(steps),
+            nextQrcodeTags
             });
             await this.internalrouteRepository.save(newroute)
             return newroute
@@ -31,6 +35,19 @@ export class InternalRouteService {
     }
 
     async route(): Promise<InternalRoute>{
+        console.log("entrando")
+        try {
+            const r = await this.getRouteById("2")
+            // const r = new InternalRoute()
+            r.steps = JSON.parse(r.steps)
+        //   return await this.placeRepository.find()
+            return r
+        } catch (error) {
+          throw new InternalServerErrorException('Erro ao buscar rota.');
+        }
+    }
+
+    async internalroute(listInternalRoute: ListInternalRoute): Promise<InternalRoute>{
         console.log("entrando")
         try {
             const r = await this.getRouteById("2")

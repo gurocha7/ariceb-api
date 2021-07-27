@@ -4,6 +4,7 @@ import {CreateInternalRouteDTO} from './dtos/createInternalRoutes.dto'
 import {InternalRouteService} from './internal-routes.service'
 import {InternalRoute} from './internal-routes.entity'
 import { from } from 'rxjs';
+import { ListInternalRoute } from './dtos/listInteralRoute.dto';
 
 @Controller('v1/internalroute')
 export class InternalRouteController {
@@ -28,6 +29,11 @@ export class InternalRouteController {
     @Get()
     async route(): Promise<InternalRoute>{
         return await this.internalrouteService.route();
+    }
+
+    @Get()
+    async internalroute(@Body() listInternalRoute: ListInternalRoute): Promise<InternalRoute>{
+        return await this.internalrouteService.internalroute(listInternalRoute);
     }
 
     @Delete(':id')

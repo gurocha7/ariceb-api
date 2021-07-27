@@ -10,5 +10,8 @@ export class CreateInternalRouteDTO {
 
   origin_id: string;
   destination_id: string;
+  qrcodeTag: string;
+  destinationTag: string;
   steps: string;
+  nextQrcodeTags: [string];
 }

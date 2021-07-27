@@ -30,7 +30,16 @@ import {
     destinationId: Subsector;
 
     @Column()
+    qrcodeTag: string;
+
+    @Column()
+    destinationTag: string;
+
+    @Column()
     steps: string;
+
+    @Column()
+    nextQrcodeTags: [string];
   
     @CreateDateColumn()
     createdAt: Date;
