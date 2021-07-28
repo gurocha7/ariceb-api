@@ -4,7 +4,7 @@ import { CreateIndoorRouteDTO } from './dtos/createIndoorRoute.dto'
 import { from } from 'rxjs';
 import { IndoorRoute } from './indoor-route.entity';
 import { IndoorRouteService } from './indoor-route.service';
-import { GetIndoorRoute } from './getIndoorRoute.dto';
+import { GetIndoorRoute } from './dtos/getIndoorRoute.dto';
 
 @Controller('v1/indoorroute')
 export class IndoorRouteController {

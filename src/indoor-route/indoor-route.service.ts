@@ -4,7 +4,7 @@ import { SubsectorService} from 'src/subsectors/subsector.service'
 import { IndoorRouteRepository } from './indoor-route.repository';
 import { CreateIndoorRouteDTO } from './dtos/createIndoorRoute.dto';
 import { IndoorRoute } from './indoor-route.entity';
-import { GetIndoorRoute } from './getIndoorRoute.dto';
+import { GetIndoorRoute } from './dtos/getIndoorRoute.dto';
 
 @Injectable()
 export class IndoorRouteService {
@@ -16,7 +16,8 @@ export class IndoorRouteService {
 
     async createRoute(createInternalRouteDTO: CreateIndoorRouteDTO): Promise<IndoorRoute>{
         try {
-            const {origin_id,qrcodeTag,destination_id,destinationTag,steps,nextQrcodeTags} = createInternalRouteDTO
+            const {origin_id,qrcodeTag,destination_id,
+                destinationTag,steps,nextQrcodeTags} = createInternalRouteDTO
             const originId = await this.sectorService.getSubsectorById(origin_id)
             const destinationId = await this.sectorService.getSubsectorById(destination_id)
             const newroute = this.indoorrouteRepository.create({
