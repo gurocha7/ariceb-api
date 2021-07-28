@@ -8,6 +8,7 @@ export default registerAs('typeOrmConfig', () => ({
   password: process.env.TYPE_ORM_PASSWORD,
   database: process.env.TYPE_ORM_DATABASE,
   entities: [__dirname + '/../**/*.entity.{js,ts}'],
-  autoLoadEntities: true,
-  synchronize: process.env.NODE_ENV !== 'production',
+  // autoLoadEntities: true,
+  // synchronize: process.env.NODE_ENV !== 'production',
+  synchornize: true,
 }));

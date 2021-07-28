@@ -27,11 +27,6 @@ export class InternalRouteController {
     }
 
     @Get()
-    async route(): Promise<InternalRoute>{
-        return await this.internalrouteService.route();
-    }
-
-    @Get()
     async internalroute(@Body() listInternalRoute: ListInternalRoute): Promise<InternalRoute>{
         return await this.internalrouteService.internalroute(listInternalRoute);
     }

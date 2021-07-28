@@ -30,7 +30,7 @@ export class InternalRouteService {
             await this.internalrouteRepository.save(newroute)
             return newroute
         } catch (error) {
-            throw new InternalServerErrorException('Erro ao cadastrar subsetor.');
+            throw new InternalServerErrorException('Erro ao cadastrar rota.');
         }
     }
 

@@ -29,16 +29,16 @@ import {
     @JoinColumn({ name: "destination_id" })
     destinationId: Subsector;
 
-    @Column({name: "qrcode_tag"})
+    @Column({name: "qrcode_tag",nullable: false, default: ""})
     qrcodeTag: string;
 
-    @Column({name: "destination_tag"})
+    @Column({name: "destination_tag",nullable: false, default: ""})
     destinationTag: string;
 
-    @Column()
+    @Column({nullable: false, default: ""})
     steps: string;
 
-    @Column({name: "nextqrcode_tags"})
+    @Column({name: "nextqrcode_tags",nullable: false, default: ""})
     nextQrcodeTags: string;
   
     @CreateDateColumn()
