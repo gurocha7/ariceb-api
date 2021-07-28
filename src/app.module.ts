@@ -9,7 +9,8 @@ import { SubsectorModule } from './subsectors/subsector.module';
 import { PlaceModule } from './places/place.module';
 import { PlacesTypeModule } from './placesType/placesType.module'
 import { MapsServiceModule } from './maps-service/maps-service.module'
-import { InternalRouteModule} from './internal-routes/internal-routes.module'
+// import { InternalRouteModule} from './internal-routes/internal-routes.module'
+import { IndoorRouteModule } from './indoor-route/indoor-route.module';
 
 @Module({
   imports: [
@@ -28,7 +29,7 @@ import { InternalRouteModule} from './internal-routes/internal-routes.module'
     PlaceModule,
     PlacesTypeModule,
     MapsServiceModule,
-    InternalRouteModule
+    IndoorRouteModule
   ],
   controllers: [],
   providers: [],
