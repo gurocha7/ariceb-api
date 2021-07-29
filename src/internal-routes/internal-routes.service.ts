@@ -13,20 +13,23 @@ export class InternalRouteService {
         private sectorService: SubsectorService
       ) {}
 
-    async createRoute(createInternalRouteDTO: CreateInternalRouteDTO): Promise<InternalRoute>{
+      async createRoute(createInternalRouteDTO: CreateInternalRouteDTO): Promise<InternalRoute>{
         try {
-            const {origin_id,destination_id,steps} = createInternalRouteDTO
+            const {origin_id,qrcodeTag,destination_id,destinationTag,steps,nextQrcodeTags} = createInternalRouteDTO
             const originId = await this.sectorService.getSubsectorById(origin_id)
             const destinationId = await this.sectorService.getSubsectorById(destination_id)
             const newroute = this.internalrouteRepository.create({
             originId,
+            qrcodeTag,
             destinationId,
-            steps: JSON.stringify(steps)
+            destinationTag,
+            steps: JSON.stringify(steps),
+            nextQrcodeTags: JSON.stringify(nextQrcodeTags)
             });
             await this.internalrouteRepository.save(newroute)
             return newroute
         } catch (error) {
-            throw new InternalServerErrorException('Erro ao cadastrar subsetor.');
+            throw new InternalServerErrorException('Erro ao cadastrar rota.');
         }
     }
 
