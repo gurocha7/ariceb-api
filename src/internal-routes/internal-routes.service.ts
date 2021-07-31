@@ -37,10 +37,7 @@ export class InternalRouteService {
 
     async internalroute(list: ListInternalRoute): Promise<StepInternalRoute>{
         try {
-            const {qrcodeTag,destinationTag} = list
-            console.log("qrcodeTag: ",qrcodeTag)
-            console.log("destinationTag: ",destinationTag)
-            const steps = await this.getSteps(qrcodeTag,destinationTag)
+            const steps = await this.getSteps(list.qrcodeTag,list.destinationTag)
             const internalRoute = new StepInternalRoute()
             internalRoute.nextqrcode_tags = JSON.parse(steps.nextQrcodeTags);
             internalRoute.steps = JSON.parse(steps.steps);

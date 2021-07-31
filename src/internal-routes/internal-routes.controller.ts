@@ -33,7 +33,15 @@ export class InternalRouteController {
     // }
 
     @Get()
-    async internalroute(@Body() list: ListInternalRoute): Promise<StepInternalRoute>{
+    @ApiOperation({
+    summary: 'Pegando rota',
+    })
+    @ApiResponse({
+    description: 'Trajeto obtido com sucesso',
+    status: HttpStatus.OK,
+    type: StepInternalRoute,
+    })
+    async internalroute(@Query() list: ListInternalRoute): Promise<StepInternalRoute>{
         return await this.internalrouteService.internalroute(list);
     }
 
