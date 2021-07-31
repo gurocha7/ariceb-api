@@ -4,6 +4,8 @@ import {CreateInternalRouteDTO} from './dtos/createInternalRoutes.dto'
 import { InternalRouteRepository } from './internal-routes.repository'
 import { InternalRoute } from './internal-routes.entity'
 import { SubsectorService} from 'src/subsectors/subsector.service'
+import { ListInternalRoute } from './dtos/listInternalRoute.dto';
+import { StepInternalRoute } from './dtos/stepInternalRoute.dto';
 
 @Injectable()
 export class InternalRouteService {
@@ -33,18 +35,42 @@ export class InternalRouteService {
         }
     }
 
-    async route(): Promise<InternalRoute>{
-        console.log("entrando")
+    async internalroute(list: ListInternalRoute): Promise<StepInternalRoute>{
         try {
-            const r = await this.getRouteById("2")
-            // const r = new InternalRoute()
-            r.steps = JSON.parse(r.steps)
-        //   return await this.placeRepository.find()
-            return r
+            const {qrcodeTag,destinationTag} = list
+            console.log("qrcodeTag: ",qrcodeTag)
+            console.log("destinationTag: ",destinationTag)
+            const steps = await this.getSteps(qrcodeTag,destinationTag)
+            const internalRoute = new StepInternalRoute()
+            internalRoute.nextqrcode_tags = JSON.parse(steps.nextQrcodeTags);
+            internalRoute.steps = JSON.parse(steps.steps);
+            return internalRoute
         } catch (error) {
-          throw new InternalServerErrorException('Erro ao buscar rota.');
+            throw new InternalServerErrorException('Erro ao pegar rota.');
         }
     }
+
+    async getSteps(qrCode: string,destination: string): Promise<InternalRoute> {
+        try {
+            const step = await this.internalrouteRepository.findOne({qrcodeTag: qrCode,destinationTag:destination})
+            return step
+        } catch (error) {
+            throw new InternalServerErrorException('Erro ao pegar steps.');
+        }
+    }
+
+    // async route(): Promise<InternalRoute>{
+    //     console.log("entrando")
+    //     try {
+    //         const r = await this.getRouteById("2")
+    //         // const r = new InternalRoute()
+    //         r.steps = JSON.parse(r.steps)
+    //     //   return await this.placeRepository.find()
+    //         return r
+    //     } catch (error) {
+    //       throw new InternalServerErrorException('Erro ao buscar rota.');
+    //     }
+    // }
 
     async deleteRoute(id: string): Promise<string>{
         try {
