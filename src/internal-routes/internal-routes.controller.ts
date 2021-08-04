@@ -27,11 +27,6 @@ export class InternalRouteController {
     return await this.internalrouteService.createRoute(createInternalRouteDTO);
     }
 
-    // @Get()
-    // async route(): Promise<InternalRoute>{
-    //     return await this.internalrouteService.route();
-    // }
-
     @Get()
     @ApiOperation({
     summary: 'Pegando rota',

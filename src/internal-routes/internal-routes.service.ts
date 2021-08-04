@@ -56,19 +56,6 @@ export class InternalRouteService {
         }
     }
 
-    // async route(): Promise<InternalRoute>{
-    //     console.log("entrando")
-    //     try {
-    //         const r = await this.getRouteById("2")
-    //         // const r = new InternalRoute()
-    //         r.steps = JSON.parse(r.steps)
-    //     //   return await this.placeRepository.find()
-    //         return r
-    //     } catch (error) {
-    //       throw new InternalServerErrorException('Erro ao buscar rota.');
-    //     }
-    // }
-
     async deleteRoute(id: string): Promise<string>{
         try {
             const route = await this.getRouteById(id)

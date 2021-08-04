@@ -35,7 +35,7 @@ import {
     @Column({name: "destination_tag",nullable: false, default: ""})
     destinationTag: string;
 
-    @Column({nullable: false, default: ""})
+    @Column({ nullable: false, type: 'varchar', length: 2000 })
     steps: string;
 
     @Column({name: "nextqrcode_tags",nullable: false, default: ""})
