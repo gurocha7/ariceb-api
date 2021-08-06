@@ -4,7 +4,8 @@ import {CreateInternalRouteDTO} from './dtos/createInternalRoutes.dto'
 import { InternalRouteRepository } from './internal-routes.repository'
 import { InternalRoute } from './internal-routes.entity'
 import { SubsectorService} from 'src/subsectors/subsector.service'
-import { ListInternalRoute } from './dtos/listInteralRoute.dto';
+import { ListInternalRoute } from './dtos/listInternalRoute.dto';
+import { StepInternalRoute } from './dtos/stepInternalRoute.dto';
 
 @Injectable()
 export class InternalRouteService {
@@ -14,7 +15,7 @@ export class InternalRouteService {
         private sectorService: SubsectorService
       ) {}
 
-    async createRoute(createInternalRouteDTO: CreateInternalRouteDTO): Promise<InternalRoute>{
+      async createRoute(createInternalRouteDTO: CreateInternalRouteDTO): Promise<InternalRoute>{
         try {
             const {origin_id,qrcodeTag,destination_id,destinationTag,steps,nextQrcodeTags} = createInternalRouteDTO
             const originId = await this.sectorService.getSubsectorById(origin_id)
@@ -30,33 +31,28 @@ export class InternalRouteService {
             await this.internalrouteRepository.save(newroute)
             return newroute
         } catch (error) {
-            throw new InternalServerErrorException('Erro ao cadastrar subsetor.');
+            throw new InternalServerErrorException('Erro ao cadastrar rota.');
         }
     }
 
-    async route(): Promise<InternalRoute>{
-        console.log("entrando")
+    async internalroute(list: ListInternalRoute): Promise<StepInternalRoute>{
         try {
-            const r = await this.getRouteById("2")
-            // const r = new InternalRoute()
-            r.steps = JSON.parse(r.steps)
-        //   return await this.placeRepository.find()
-            return r
+            const steps = await this.getSteps(list.qrcodeTag,list.destinationTag)
+            const internalRoute = new StepInternalRoute()
+            internalRoute.nextqrcode_tags = JSON.parse(steps.nextQrcodeTags);
+            internalRoute.steps = JSON.parse(steps.steps);
+            return internalRoute
         } catch (error) {
-          throw new InternalServerErrorException('Erro ao buscar rota.');
+            throw new InternalServerErrorException('Erro ao pegar rota.');
         }
     }
 
-    async internalroute(listInternalRoute: ListInternalRoute): Promise<InternalRoute>{
-        console.log("entrando")
+    async getSteps(qrCode: string,destination: string): Promise<InternalRoute> {
         try {
-            const r = await this.getRouteById("2")
-            // const r = new InternalRoute()
-            r.steps = JSON.parse(r.steps)
-        //   return await this.placeRepository.find()
-            return r
+            const step = await this.internalrouteRepository.findOne({qrcodeTag: qrCode,destinationTag:destination})
+            return step
         } catch (error) {
-          throw new InternalServerErrorException('Erro ao buscar rota.');
+            throw new InternalServerErrorException('Erro ao pegar steps.');
         }
     }
 
