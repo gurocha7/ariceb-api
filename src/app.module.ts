@@ -10,8 +10,6 @@ import { PlaceModule } from './places/place.module';
 import { PlacesTypeModule } from './placesType/placesType.module';
 import { MapsServiceModule } from './maps-service/maps-service.module';
 import { InternalRouteModule } from './internal-routes/internal-routes.module';
-import { IndoorRouteModule } from './indoor-route/indoor-route.module';
-
 @Module({
   imports: [
     ConfigModule.forRoot({
@@ -29,7 +27,6 @@ import { IndoorRouteModule } from './indoor-route/indoor-route.module';
     PlaceModule,
     PlacesTypeModule,
     MapsServiceModule,
-    IndoorRouteModule,
     InternalRouteModule,
   ],
   controllers: [],
