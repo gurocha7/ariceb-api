@@ -7,9 +7,9 @@ import { SectorModule } from './sectors/sector.module';
 import typeOrmConfig from './config/typeorm.config';
 import { SubsectorModule } from './subsectors/subsector.module';
 import { PlaceModule } from './places/place.module';
-import { PlacesTypeModule } from './placesType/placesType.module'
-import { MapsServiceModule } from './maps-service/maps-service.module'
-// import { InternalRouteModule} from './internal-routes/internal-routes.module'
+import { PlacesTypeModule } from './placesType/placesType.module';
+import { MapsServiceModule } from './maps-service/maps-service.module';
+import { InternalRouteModule } from './internal-routes/internal-routes.module';
 import { IndoorRouteModule } from './indoor-route/indoor-route.module';
 
 @Module({
@@ -29,7 +29,8 @@ import { IndoorRouteModule } from './indoor-route/indoor-route.module';
     PlaceModule,
     PlacesTypeModule,
     MapsServiceModule,
-    IndoorRouteModule
+    IndoorRouteModule,
+    InternalRouteModule,
   ],
   controllers: [],
   providers: [],

@@ -4,7 +4,6 @@ import { AppModule } from './app.module';
 import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 
 async function bootstrap() {
-  console.log("NODE_ENV 1: ",process.env.NODE_ENV);
   const app = await NestFactory.create(AppModule, {
     logger: ['log', 'error', 'warn', 'debug', 'verbose'],
   });
@@ -19,6 +18,5 @@ async function bootstrap() {
   SwaggerModule.setup('api-docs', app, document);
 
   await app.listen(process.env.PORT || 3306);
-  console.log("NODE_ENV: ",process.env.NODE_ENV);
 }
 bootstrap();
