@@ -3,7 +3,7 @@ import { ApiBody, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { Qrcode } from './qrcode.entity';
 import { QrcodeService } from './qrcode.service'
 
-import { CreateQrcodeDTO } from './dtos/createQRCode.dto'
+import { CreateQrcodeDTO} from './dtos/createQrcode.dto'
 
 @Controller('v1/qrcode')
 export class QRCodeController {

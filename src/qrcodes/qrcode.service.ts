@@ -1,7 +1,7 @@
 import { Injectable, InternalServerErrorException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { BuildingsService  } from '../buildings/buildings.service'
-import { CreateQrcodeDTO } from './dtos/createQRCode.dto'
+import { CreateQrcodeDTO} from './dtos/createQrcode.dto'
 import { SectorService } from 'src/sectors/sector.service'
 import { SubsectorService } from 'src/subsectors/subsector.service'
 import { Qrcode } from './qrcode.entity'
