@@ -34,9 +34,9 @@ export class QRCodeController {
 //     return await this.qrcodeService.listSectorsByBuildingId(id);
 //   }
 
-//   @Delete(':id')
-//   async deleteSector(@Param('id') id: string): Promise<String>{
-//     const result = await this.qrcodeService.deleteSector(id)
-//     return result
-//   }
+  @Delete(':id')
+  async deleteSector(@Param('id') id: string): Promise<String>{
+    const result = await this.qrcodeService.deleteQrcode(id)
+    return result
+  }
 }

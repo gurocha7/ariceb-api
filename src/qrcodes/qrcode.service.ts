@@ -54,28 +54,23 @@ export class QrcodeService {
 //     }
 //   }
 
-//   async deleteSector(id: string): Promise<string>{
-    
-//     if (id == 'fire'){
-//       return this.deleteAllSectors()
-//     }else{
-//       try {
-//         const sector = await this.getSectorById(id)
-//          await this.sectorRepository.delete({ id: sector.id })
-//          return 'Setor deletado com sucesso!'
-//       } catch (error) {
-//         throw new InternalServerErrorException('Setor não encontrado.');
-//       }
-//     }
-//   }
+  async deleteQrcode(id: string): Promise<string>{
+      try {
+        const qrcode = await this.getQrcodeById(id)
+         await this.qrcodeRepository.delete({ id: qrcode.id })
+         return 'Qrcode deletado com sucesso!'
+      } catch (error) {
+        throw new InternalServerErrorException('Qrcode não encontrado.');
+      }
+  }
 
-//   async getSectorById(id: string): Promise<Sector> {
-//     const sector = await this.sectorRepository.findOne(id);
-//     if (!sector) {
-//       throw new InternalServerErrorException('Setor não encontrado.')
-//     }
-//     return sector;
-//   }
+  async getQrcodeById(id: string): Promise<Qrcode> {
+    const qrcode = await this.qrcodeRepository.findOne(id);
+    if (!qrcode) {
+      throw new InternalServerErrorException('Qrcode não encontrado.')
+    }
+    return qrcode;
+  }
 
 //   async getSectorsInBuilding(buildingId: string): Promise<ListSectorDTO> {
 //     const building = await this.buildingService.getBuildingById(buildingId);
