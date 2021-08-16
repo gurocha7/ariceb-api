@@ -29,10 +29,10 @@ export class QRCodeController {
     return await this.qrcodeService.listQrcodes()
   }
 
-//   @Get(':id')
-//   async listSectorsByBuilding(@Param('id') id: string): Promise<ListSectorDTO>{
-//     return await this.qrcodeService.listSectorsByBuildingId(id);
-//   }
+  @Get(':id')
+  async getQrcodeById(@Param('id') id: string): Promise<Qrcode>{
+    return await this.qrcodeService.getQrcodeById(id);
+  }
 
   @Delete(':id')
   async deleteSector(@Param('id') id: string): Promise<String>{

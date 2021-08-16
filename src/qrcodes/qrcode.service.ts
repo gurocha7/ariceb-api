@@ -44,15 +44,6 @@ export class QrcodeService {
       throw new InternalServerErrorException('Erro ao cadastrar listar qrcodes.');
     }
   }
-  
-//   async listSectorsByBuildingId(id: string): Promise<ListSectorDTO> {
-//     try {
-//       const sectors = await this.getSectorsInBuilding(id);
-//       return sectors
-//     } catch (error) {
-//       throw new InternalServerErrorException('Setor não encontrado.');
-//     }
-//   }
 
   async deleteQrcode(id: string): Promise<string>{
       try {
