@@ -4,6 +4,7 @@ import { Qrcode } from './qrcode.entity';
 import { QrcodeService } from './qrcode.service'
 
 import { CreateQrcodeDTO} from './dtos/createQrcode.dto'
+import { ListQrcode } from './dtos/listQrcode.dto';
 
 @Controller('v1/qrcode')
 export class QRCodeController {
@@ -30,7 +31,7 @@ export class QRCodeController {
   }
 
   @Get(':id')
-  async getQrcodeById(@Param('id') id: string): Promise<Qrcode>{
+  async getQrcodeById(@Param('id') id: string): Promise<ListQrcode>{
     return await this.qrcodeService.getQrcodeById(id);
   }
 
