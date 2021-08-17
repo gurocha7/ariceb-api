@@ -59,6 +59,7 @@ export class QrcodeService {
   async getQrcodeById(id: string): Promise<ListQrcode> {
     const qrcode = await this.qrcodeRepository.findOne(id);
     const newQrcode = new ListQrcode()
+    newQrcode.id = qrcode.id
     newQrcode.name = qrcode.name
     newQrcode.buildingID = qrcode.building.id
     newQrcode.sectorID = qrcode.sector.id
