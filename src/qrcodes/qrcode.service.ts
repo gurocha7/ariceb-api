@@ -8,7 +8,7 @@ import { Qrcode } from './qrcode.entity'
 import { Double } from 'typeorm';
 import { Building } from 'src/buildings/buildings.entity';
 import { QrcodeRepository } from './qrcode.repository'
-import { ListQrcode } from './dtos/listQrcode.dto';
+import { ListQrcode, QrcodeInformation } from './dtos/listQrcode.dto';
 
 @Injectable()
 export class QrcodeService {
@@ -56,10 +56,12 @@ export class QrcodeService {
       }
   }
 
+
   async getQrcodeById(id: string): Promise<ListQrcode> {
     const qrcode = await this.qrcodeRepository.findOne(id,{ 
         relations:["building","sector","subsector"]
     });
+
     const newQrcode = new ListQrcode()
     newQrcode.id = qrcode.id
     newQrcode.name = qrcode.name
@@ -73,11 +75,39 @@ export class QrcodeService {
     return newQrcode;
   }
 
-//   async getSectorsInBuilding(buildingId: string): Promise<ListSectorDTO> {
-//     const building = await this.buildingService.getBuildingById(buildingId);
-//     const sectors = await this.sectorRepository.find({building})
-//     let listSectors = new ListSectorDTO();
-//     listSectors.sectors = sectors
-//     return listSectors;
-//   }
+  async getQrcodeByName(info: QrcodeInformation): Promise<ListQrcode> {
+    console.log("entrou 1")
+    // const qrcode = await this.qrcodeRepository.findOne({name: info.name})
+    // console.log("entrou 2")
+    // console.log("QR: ", qrcode)
+    // const qrcode = await this.qrcodeRepository.findOne(name,{
+    //     relations:["building","sector","subsector"]
+    // });
+
+    try {
+      const qrcode = await this.qrcodeRepository.findOne({name: info.name})
+      console.log("entrou 2")
+      console.log("QR: ", qrcode)
+      const newQrcode = new ListQrcode()
+      newQrcode.id = qrcode.id
+      newQrcode.name = qrcode.name
+      newQrcode.buildingID = qrcode.building.id
+      newQrcode.sectorID = qrcode.sector.id
+      newQrcode.subsectorID = qrcode.subsector.id
+      return newQrcode;
+    } catch (error) {
+      throw new InternalServerErrorException('Qrcode não encontrado.')
+    }
+    // const newQrcode = new ListQrcode()
+    // newQrcode.id = qrcode.id
+    // newQrcode.name = qrcode.name
+    // newQrcode.buildingID = qrcode.building.id
+    // newQrcode.sectorID = qrcode.sector.id
+    // newQrcode.subsectorID = qrcode.subsector.id
+    // console.log("entrou 3")
+    // if (!newQrcode) {
+    //   throw new InternalServerErrorException('Qrcode não encontrado.')
+    // }
+    // return newQrcode;
+  }
 }

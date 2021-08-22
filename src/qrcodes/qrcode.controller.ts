@@ -4,7 +4,7 @@ import { Qrcode } from './qrcode.entity';
 import { QrcodeService } from './qrcode.service'
 
 import { CreateQrcodeDTO} from './dtos/createQrcode.dto'
-import { ListQrcode } from './dtos/listQrcode.dto';
+import { ListQrcode, QrcodeInformation } from './dtos/listQrcode.dto';
 
 @Controller('v1/qrcode')
 export class QRCodeController {
@@ -25,14 +25,23 @@ export class QRCodeController {
     return await this.qrcodeService.createQrcode(createQrcodeDTO);
   }
 
-  @Get()
-  async listQrcodes(): Promise<Qrcode[]>{
-    return await this.qrcodeService.listQrcodes()
-  }
+  // @Get()
+  // async listQrcodes(): Promise<Qrcode[]>{
+  //   return await this.qrcodeService.listQrcodes()
+  // }
 
-  @Get(':id')
-  async getQrcodeById(@Param('id') id: string): Promise<ListQrcode>{
-    return await this.qrcodeService.getQrcodeById(id);
+  @Get()
+  @ApiOperation({
+  summary: 'Pegando qrcode',
+  })
+  @ApiResponse({
+  description: 'QRCODE obtido com sucesso',
+  status: HttpStatus.OK,
+  type: ListQrcode,
+  })
+  async getQrcodeByName(@Query() info: QrcodeInformation): Promise<ListQrcode>{
+    console.log("entrou 0")
+    return await this.qrcodeService.getQrcodeByName(info);
   }
 
   @Delete(':id')
