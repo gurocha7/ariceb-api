@@ -5,3 +5,7 @@ export class ListQrcode {
     sectorID: string;
     subsectorID: string;
 }
+
+export class QrcodeInformation {
+    name: string;
+}
