@@ -34,7 +34,7 @@ export class QRCodeController {
   status: HttpStatus.OK,
   type: ListQrcode,
   })
-  async getQrcodeByName(@Body() info: QrcodeInformation): Promise<ListQrcode>{
+  async getQrcodeByName(@Query() info: QrcodeInformation): Promise<ListQrcode>{
     return await this.qrcodeService.getQrcodeByName(info);
   }
 
