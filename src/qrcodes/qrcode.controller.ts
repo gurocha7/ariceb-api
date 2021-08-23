@@ -25,11 +25,6 @@ export class QRCodeController {
     return await this.qrcodeService.createQrcode(createQrcodeDTO);
   }
 
-  // @Get()
-  // async listQrcodes(): Promise<Qrcode[]>{
-  //   return await this.qrcodeService.listQrcodes()
-  // }
-
   @Get()
   @ApiOperation({
   summary: 'Pegando qrcode',
@@ -39,8 +34,7 @@ export class QRCodeController {
   status: HttpStatus.OK,
   type: ListQrcode,
   })
-  async getQrcodeByName(@Query() info: QrcodeInformation): Promise<ListQrcode>{
-    console.log("entrou 0")
+  async getQrcodeByName(@Body() info: QrcodeInformation): Promise<ListQrcode>{
     return await this.qrcodeService.getQrcodeByName(info);
   }
 

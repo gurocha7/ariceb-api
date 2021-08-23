@@ -9,6 +9,7 @@ import { Double } from 'typeorm';
 import { Building } from 'src/buildings/buildings.entity';
 import { QrcodeRepository } from './qrcode.repository'
 import { ListQrcode, QrcodeInformation } from './dtos/listQrcode.dto';
+import { callbackify } from 'util';
 
 @Injectable()
 export class QrcodeService {
@@ -75,16 +76,18 @@ export class QrcodeService {
   }
 
   async getQrcodeByName(info: QrcodeInformation): Promise<ListQrcode> {
-    console.log("entrou 1")
-    const qrcode = await this.qrcodeRepository.findOne({name: info.name})
-      console.log("entrou 2")
-      console.log("QR: ", qrcode)
-      const newQrcode = new ListQrcode()
-      newQrcode.id = qrcode.id
-      newQrcode.name = qrcode.name
-      newQrcode.buildingID = qrcode.building.id
-      newQrcode.sectorID = qrcode.sector.id
-      newQrcode.subsectorID = qrcode.subsector.id
+    const name = info.name;
+    const qrcode = await this.qrcodeRepository.find({relations:["building","sector","subsector"]})  
+    const newQrcode = new ListQrcode()
+    qrcode.forEach( item => {
+        if (item.name == name) {
+          newQrcode.name = item.name
+          newQrcode.buildingID = item.building.id
+          newQrcode.sectorID = item.sector.id
+          newQrcode.subsectorID = item.subsector.id
+          return
+        }
+    } );
     if (!newQrcode) {
       throw new InternalServerErrorException('Qrcode não encontrado.')
     }
