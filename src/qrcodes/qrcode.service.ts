@@ -82,8 +82,11 @@ export class QrcodeService {
     qrcode.forEach( item => {
         if (item.name == name) {
           newQrcode.name = item.name
+          newQrcode.buildingName = item.building.name
           newQrcode.buildingID = item.building.id
+          newQrcode.sectorName = item.sector.name
           newQrcode.sectorID = item.sector.id
+          newQrcode.subsectorName = item.subsector.name
           newQrcode.subsectorID = item.subsector.id
           return
         }
